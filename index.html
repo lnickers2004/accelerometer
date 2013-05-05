@@ -61,13 +61,13 @@
       $("#aZ").removeClass( );
       
       if (runde(acceleration.x) != runde (aX))  {
-         $("#aX").addClass( 'changed' );
+         $("#aX").addClass( 'aktuell' );
       }    
       if (runde(acceleration.y) != runde (aY))  {
-         $("#aY").addClass( 'changed' );
+         $("#aY").addClass( 'aktuell' );
       }
       if (runde(acceleration.z) != runde (aZ))  {
-         $("#aZ").addClass( 'changed' );
+         $("#aZ").addClass( 'aktuell' );
       }
       
       aX = acceleration.x;
@@ -95,7 +95,11 @@
 
     </script>
     <style type="text/css">
-      #aX, #aY, #aZ {
+      .anzeige DIV.aktuell {
+         background: #CEF7B4;
+      }
+      
+      .anzeige div {
          width: 50px; 
          height: 20px;
          float:left;
@@ -104,17 +108,16 @@
          background: #eee;
          text-align: center;
       }
-      .changed {
-         background: lightgreen;
-      }
+      
     
     </style>
   </head>
   <body>
-    
-    <div id="aX">X</div>
-    <div id="aY">Y</div>
-    <div id="aZ">Z</div>
+    <div class="anzeige">
+       <div id="aX" class="aktuell">X</div>
+       <div id="aY">Y</div>
+       <div id="aZ">Z</div>
+    </div>
     <div id="accelerometer">Waiting for accelerometer...</div>
     
   </body>
