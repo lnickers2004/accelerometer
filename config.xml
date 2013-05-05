@@ -21,7 +21,6 @@ Enable individual API permissions by defining each here.
 The 'device' permission is required for the 'deviceready' event.
 -->
     <feature name="http://api.phonegap.com/1.0/device" />
-    <plugin name="Accelerometer" value="org.apache.cordova.AccelListener" />
 
 
     <!--
