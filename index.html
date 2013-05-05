@@ -47,18 +47,43 @@
             watchID = null;
         }
     }
-
+   
+   var aX = 0;
+   var aY = 0;
+   var aZ = 0;
+   
     // onSuccess: Get a snapshot of the current acceleration
     //
     function onSuccess(acceleration) {
         var element = document.getElementById('accelerometer');
-   
-        element.innerHTML += 'Acceleration X: ' + acceleration.x + '<br />' +
+      $("#aX").removeClass( );
+      $("#aY").removeClass( );
+      $("#aZ").removeClass( );
+      
+      if (runde(acceleration.x) != runde (aX))  {
+         $("#aX").addClass( 'changed' );
+      }    
+      if (runde(acceleration.y) != runde (aY))  {
+         $("#aY").addClass( 'changed' );
+      }
+      if (runde(acceleration.z) != runde (aZ))  {
+         $("#aZ").addClass( 'changed' );
+      }
+      
+      aX = acceleration.x;
+      aY = acceleration.y;
+      aZ = acceleration.z;
+      
+      element.innerHTML += 'Acceleration X: ' + acceleration.x + '<br />' +
                             'Acceleration Y: ' + acceleration.y + '<br />' +
                             'Acceleration Z: ' + acceleration.z + '<br />' +
                             'Timestamp: '      + acceleration.timestamp + '<br />';
     }
-
+   
+   
+   function runde(x) {
+      return Math.round( x * 1000) /1000;
+   }
     // onError: Failed to get the acceleration
     //
     function onError() {
@@ -66,8 +91,19 @@
     }
 
     </script>
+    <style>
+      .change {
+         background: lightgreen;
+      }
+    
+    </style>
   </head>
   <body>
+    
+    <div id="aX"></div>
+    <div id="aY"></div>
+    <div id="aZ"></div>
     <div id="accelerometer">Waiting for accelerometer...</div>
+    
   </body>
 </html>
