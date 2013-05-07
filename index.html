@@ -117,8 +117,6 @@
       if ( ypos < 0 ) ypos = 0;
       if ( ypos + kheight > pheight ) ypos = pheight - kheight;
       //console.log( "X:"  + xpos + " Y:" + ypos  );
-      $( "#posX").html("PosX: " + xpos);
-      $( "#posY").html("PosY: " + ypos);
       
       $("#kugel").css( 'left', xpos );
       $("#kugel").css( 'top', ypos );
@@ -181,7 +179,6 @@
        <div id="aZ">Z</div>
     </div>
     <div id="accelerometer">Waiting for accelerometer...</div>
-    <div id="posX">X</div><div id="posY">Y</div>
     <div id="drawarea">
       <div id="kugel"></div>
     </div>
