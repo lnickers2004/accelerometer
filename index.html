@@ -91,24 +91,47 @@
    function moveBall() {
       pwidth = $("#drawarea").innerWidth();
       pheight = $("#drawarea").innerHeight();
+      
       var position = $("#kugel").position();
-      xpos = position.left;
-      ypos = position.top;
+      //console.log(position);
+      
+      
+      xpos = Math.round(position.left);
+      ypos = Math.round(position.top);
       
       kwidth = $("#kugel").outerWidth();
       kheight = $("#kugel").outerHeight();
       
+      //console.log( "X:"  + xpos + " Y:" + ypos + " KH:" + kheight + " KB: " + kwidth + " PH:" + pheight + " PB:" + pwidth );
+      
+      
       xpos += runde( aX ) ;
+      ypos += runde( aY ) ;
+      //console.log( "X:"  + xpos + " Y:" + ypos  );
+      
       if ( xpos < 0 ) xpos = 0;
       if ( xpos + kwidth > pwidth ) xpos = pwidth - kwidth; 
-      ypos += runde( aY ) ;
+      
+     
       if ( ypos < 0 ) ypos = 0;
-      if ( ypos + kheight > pheight ) ypos = kheight - kheight;
+      if ( ypos + kheight > pheight ) ypos = pheight - kheight;
+      //console.log( "X:"  + xpos + " Y:" + ypos  );
+      $( "#posX").html("PosX: " + xpos);
+      $( "#posY").html("PosY: " + ypos);
       
       $("#kugel").css( 'left', xpos );
       $("#kugel").css( 'top', ypos );
    }
    
+   function Move(dir) {
+      if ( dir == 'x' ) {
+         aX = 2;
+      } else {
+      
+         aY = 2;
+      }
+      moveBall();
+   }
    
    // onError: Failed to get the acceleration
     //
@@ -138,11 +161,12 @@
          height: 500px;
          border: 2px solid #72B735;
          background: #EFFCE3;
+         position: relative;
       }
       #kugel {
          width: 170px;
          height: 170px;
-         position: relative;
+         position: absolute;
          top: 40%;
          left:40%;
          background: transparent url(img/start_kugel.png);
@@ -151,12 +175,12 @@
   </head>
   <body>
     <div class="anzeige">
-       <div id="aX" class="aktuell">X</div>
-       <div id="aY">Y</div>
+       <div id="aX" class="aktuell" onclick="Move('x')">X</div>
+       <div id="aY" onclick="Move('y')">Y</div>
        <div id="aZ">Z</div>
     </div>
     <div id="accelerometer">Waiting for accelerometer...</div>
-    
+    <div id="posX">X</div><div id="posY">Y</div>
     <div id="drawarea">
       <div id="kugel"></div>
     </div>
