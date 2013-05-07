@@ -55,7 +55,7 @@
     // onSuccess: Get a snapshot of the current acceleration
     //
     function onSuccess(acceleration) {
-        var element = document.getElementById('accelerometer');
+      var element = document.getElementById('accelerometer');
       $("#aX").removeClass( );
       $("#aY").removeClass( );
       $("#aZ").removeClass( );
@@ -74,6 +74,7 @@
       aY = acceleration.y;
       aZ = acceleration.z;
       
+      moveBall();
       /* */
       element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
                             'Acceleration Y: ' + acceleration.y + '<br />' +
@@ -85,9 +86,31 @@
    
    function runde(x) {
       return Math.round( x );
-      //return Math.round( x * 1000) / 1000;
    }
-    // onError: Failed to get the acceleration
+   
+   function moveBall() {
+      pwidth = $("#drawarea").innerWidth();
+      pheight = $("#drawarea").innerHeight();
+      var position = $("#kugel").position();
+      xpos = position.left;
+      ypos = position.top;
+      
+      kwidth = $("#kugel").outerWidth();
+      kheight = $("#kugel").outerHeight();
+      
+      xpos += runde( aX ) ;
+      if ( xpos < 0 ) xpos = 0;
+      if ( xpos + kwidth > pwidth ) xpos = pwidth - kwidth; 
+      ypos += runde( aY ) ;
+      if ( ypos < 0 ) ypos = 0;
+      if ( ypos + kheight > pheight ) ypos = kheight - kheight;
+      
+      $("#kugel").css( 'left', xpos );
+      $("#kugel").css( 'top', ypos );
+   }
+   
+   
+   // onError: Failed to get the acceleration
     //
     function onError() {
         alert('onError!');
@@ -109,7 +132,21 @@
          text-align: center;
       }
       
-    
+      #drawarea {
+         margin-top: 100px;
+         width: 80%;
+         height: 500px;
+         border: 2px solid #72B735;
+         background: #EFFCE3;
+      }
+      #kugel {
+         width: 170px;
+         height: 170px;
+         position: relative;
+         top: 40%;
+         left:40%;
+         background: transparent url(img/start_kugel.png);
+      }
     </style>
   </head>
   <body>
@@ -120,5 +157,8 @@
     </div>
     <div id="accelerometer">Waiting for accelerometer...</div>
     
+    <div id="drawarea">
+      <div id="kugel"></div>
+    </div>
   </body>
 </html>
