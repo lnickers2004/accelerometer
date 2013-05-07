@@ -104,9 +104,10 @@
       
       //console.log( "X:"  + xpos + " Y:" + ypos + " KH:" + kheight + " KB: " + kwidth + " PH:" + pheight + " PB:" + pwidth );
       
+      faktor = 5;
+      xpos += faktor * runde( aX ) ;
+      ypos += faktor * runde( aY ) ;
       
-      xpos += runde( aX ) ;
-      ypos += runde( aY ) ;
       //console.log( "X:"  + xpos + " Y:" + ypos  );
       
       if ( xpos < 0 ) xpos = 0;
